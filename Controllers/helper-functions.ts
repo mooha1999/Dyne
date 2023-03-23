@@ -14,8 +14,11 @@ export async function getCheckNum(tableID: string): Promise<string> {
   
   const response = await axios.post(openChecks, SUMMARY_BODY, { headers: HEADERS });
   const checks = await checksSummaries(response);
-  const { CheckNum: checknum } = checks.find(check => check.CheckTableGroup === tableID) as ICheckSummary;
-  return checknum
+  const checkSummary = checks.find(check => check.CheckTableGroup === tableID);
+  if(!checkSummary){
+    throw new Error('No table has the provided ID')
+  }
+  return checkSummary.CheckNum;
 }
 
 export async function getPrintedCheck(checkNum: string): Promise<string[]> {
