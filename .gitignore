@@ -4,3 +4,4 @@ dist
 res.xml
 res.json
 log.txt
+.env

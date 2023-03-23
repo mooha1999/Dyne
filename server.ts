@@ -1,7 +1,10 @@
 import express, { json } from 'express';
 import {items, notify} from './Controllers/check-controller';
-const app = express();
+import dotenv from "dotenv";
 
+dotenv.config();
+
+const app = express();
 app.use(json()); // use built-in JSON middleware
 
 // Enable CORS
@@ -19,5 +22,5 @@ app.get('/:tid', items);
 // Second Operation
 app.post('/notify', notify);
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`listening on port ${port}`));
