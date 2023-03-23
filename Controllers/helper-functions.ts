@@ -11,6 +11,7 @@ const {openChecks, printedCheck} = {//environment variables
 }
 
 export async function getCheckNum(tableID: string): Promise<string> {
+  
   const response = await axios.post(openChecks, SUMMARY_BODY, { headers: HEADERS });
   const checks = await checksSummaries(response);
   const { CheckNum: checknum } = checks.find(check => check.CheckTableGroup === tableID) as ICheckSummary;
@@ -46,10 +47,6 @@ export function parseItems(printedCheck: string[]): IItems{
     }
   });
   return productsList;
-}
-
-function getURL(endpoint: number): string {
-  return `https://private-anon-cb645058d4-simphonytsapi.apiary-mock.com/${endpoint}/EGateway/SimphonyPosApiWeb.asmx`
 }
 
 async function checksSummaries(response: AxiosResponse): Promise<ICheckSummary[]> {
