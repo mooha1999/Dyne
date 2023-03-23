@@ -1,8 +1,9 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { json } from 'express';
 import {items, notify} from './Controllers/check-controller';
-import dotenv from "dotenv";
 
-dotenv.config();
 
 const app = express();
 app.use(json()); // use built-in JSON middleware
