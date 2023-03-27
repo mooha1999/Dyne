@@ -15,11 +15,11 @@ app.use((_, res, next) => {
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
-  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Methods', 'GET POST');
   next();
 });
 // First Operation
-app.get('/:tid', items);
+app.get('/items/:tid', items);
 // Second Operation
 app.post('/notify', notify);
 
